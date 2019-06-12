@@ -152,9 +152,3 @@ class VectorNN:
         lambdas.append(self.lambda_ / self.rows * np.concatenate([np.zeros([self.thetas[0].shape[0], 1]),
                                                                   self.thetas[0][:, 1:]], axis=1))
         self.thetas_deriv[0] = 1 / self.rows * np.matmul(deltas[-1].T, X) + lambdas[-1]
-
-
-# model = VectorNN('./datasets/hand_nums/train.csv', 0.1, 0.1, 1000000, 0.8,
-#                  [25], 10000, 'target', func_type='sigmoid')
-# weights = model.run()
-# print(weights)
