@@ -153,9 +153,3 @@ class VectorNN:
 
     def my_accuracy_score(self, y_pred, y):
         return np.mean((y_pred == y) * 1)
-
-
-# model = VectorNN('./datasets/hand_nums/train.csv', 0.1, 0.1, 1000000, 0.8,
-#                  [25], 10000, 'target', func_type='sigmoid')
-# weights = model.run()
-# print(weights)
