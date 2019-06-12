@@ -2,13 +2,10 @@ import numpy as np
 import pandas as pd
 import time
 from tqdm import tqdm
-from sklearn.metrics import accuracy_score
 np.set_printoptions(suppress=True)
 
-np.random.seed(1)
 
 class VectorNN:
-
     def __init__(self, model_params):
         # internals
         self.X: np.array
@@ -111,16 +108,17 @@ class VectorNN:
         af = self.activ_func(zf)
         self.l_act.append(af)
         self.pred = np.round(af)
-        self.accuracy = accuracy_score(self.pred, y)
-        if int(i/self.print_split)-i/self.print_split == 0 and train:
+        self.accuracy = self.my_accuracy_score(self.pred, y)
+        if int(i / self.print_split) - i / self.print_split == 0 and train:
             print('Current train accuracy: ' + str(self.accuracy))
-        if not train and int(i/self.print_split)-i/self.print_split == 0:
+        if not train and int(i / self.print_split) - i / self.print_split == 0:
             print('Current test accuracy: ' + str(self.accuracy))
         if train and i == self.iterations - 1:
             print('Final train accuracy: ' + str(self.accuracy))
-        if not train and i == self.iterations-1:
+        if not train and i == self.iterations - 1:
             print('********')
             print('Final test accuracy: ' + str(self.accuracy))
+
 
     def compute_cost(self):
         y = self.Y[:int(len(self.X) * self.train_split), :]
@@ -152,3 +150,12 @@ class VectorNN:
         lambdas.append(self.lambda_ / self.rows * np.concatenate([np.zeros([self.thetas[0].shape[0], 1]),
                                                                   self.thetas[0][:, 1:]], axis=1))
         self.thetas_deriv[0] = 1 / self.rows * np.matmul(deltas[-1].T, X) + lambdas[-1]
+
+    def my_accuracy_score(self, y_pred, y):
+        return np.mean((y_pred == y) * 1)
+
+
+# model = VectorNN('./datasets/hand_nums/train.csv', 0.1, 0.1, 1000000, 0.8,
+#                  [25], 10000, 'target', func_type='sigmoid')
+# weights = model.run()
+# print(weights)
