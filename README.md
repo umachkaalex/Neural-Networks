@@ -27,4 +27,5 @@
 3. Run file.
 
 ********* Information ************
+
 Implementation of algorythm completed based on numpy vectorization of forward and back propagations.
