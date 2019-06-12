@@ -25,3 +25,6 @@
   -  'print_split': while training proccess, it will print training results each "print_split" iteration.
   -  'func_type': type of activation function to use. Option (for now): 'sigmoid', 'tanh'.
 3. Run file.
+
+********* Information ************
+Implementation of algorythm completed based on numpy vectorization of forward and back propagations.
