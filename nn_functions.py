@@ -59,7 +59,7 @@ class VectorNN:
         if self.func_type == 'sigmoid':
             act_func = 1 / (1 + np.exp(-z))
         if self.func_type == 'tanh':
-            act_func = np.divide(1, (np.add(1, np.exp(-z))))
+            act_func = (np.exp(z) - np.exp(-z))/(np.exp(z) + np.exp(-z))
         return act_func
 
     def prepare_datasets(self):
